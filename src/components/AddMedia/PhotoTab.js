@@ -10,7 +10,7 @@ import {
 import {VStack, HStack, Icon, Text, Image, Box, ScrollView} from 'native-base';
 import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
-
+import * as ImagePicker from 'react-native-image-picker';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {RNCamera} from 'react-native-camera';
 import {TabView, SceneMap} from 'react-native-tab-view';
@@ -18,7 +18,6 @@ import {TabView, SceneMap} from 'react-native-tab-view';
 const PendingView = () => (
   <View
     style={{
-      flex: 1,
       backgroundColor: 'lightgreen',
       justifyContent: 'center',
       alignItems: 'center',
