@@ -6,12 +6,13 @@ import Entypo from 'react-native-vector-icons/Entypo';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {TabView, SceneMap} from 'react-native-tab-view';
-export default function EditImage({navigation, route}) {
+export default function EditImage({route}) {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     {key: 'first', title: 'Filter'},
     {key: 'second', title: 'Edit'},
   ]);
+
   const renderTabBar = props => {
     const inputRange = props.navigationState.routes.map((x, i) => i);
     return (
@@ -32,6 +33,7 @@ export default function EditImage({navigation, route}) {
               borderColor={borderColor}
               flex={1}
               height={10}
+              key={Math.random()}
               alignItems="center"
               justifyContent="center"
               cursor="pointer">
@@ -48,6 +50,7 @@ export default function EditImage({navigation, route}) {
       </Box>
     );
   };
+
   const FirstRoute = () => (
     <ScrollView
       contentContainerStyle={{
@@ -56,10 +59,11 @@ export default function EditImage({navigation, route}) {
         alignItems: 'center',
       }}
       horizontal={true}
-      showsHorizontalScrollIndicator={false}>
+      showsHorizontalScrollIndicator={false}
+      key={Math.random()}>
       <VStack>
         <Image
-          source={{uri: route.params.ImageSource}}
+          source={{uri: route.params.imageSource}}
           alt="dsdf"
           style={{
             marginHorizontal: 4,
@@ -72,7 +76,7 @@ export default function EditImage({navigation, route}) {
       </VStack>
       <VStack>
         <Image
-          source={{uri: route.params.ImageSource}}
+          source={{uri: route.params.imageSource}}
           alt="dsdf"
           style={{
             marginHorizontal: 4,
@@ -85,7 +89,7 @@ export default function EditImage({navigation, route}) {
       </VStack>
       <VStack>
         <Image
-          source={{uri: route.params.ImageSource}}
+          source={{uri: route.params.imageSource}}
           alt="dsdf"
           style={{
             marginHorizontal: 4,
@@ -98,7 +102,7 @@ export default function EditImage({navigation, route}) {
       </VStack>
       <VStack>
         <Image
-          source={{uri: route.params.ImageSource}}
+          source={{uri: route.params.imageSource}}
           alt="dsdf"
           style={{
             marginHorizontal: 4,
@@ -119,7 +123,8 @@ export default function EditImage({navigation, route}) {
         alignItems: 'center',
       }}
       horizontal={true}
-      showsHorizontalScrollIndicator={false}>
+      showsHorizontalScrollIndicator={false}
+      key={Math.random()}>
       <VStack w={100} h="80%">
         <HStack w={70} h={30} justifyContent="center" alignItems="center">
           <Text color="#000">Adjust</Text>
@@ -235,7 +240,7 @@ export default function EditImage({navigation, route}) {
     <VStack style={styles.mainContainer}>
       <VStack flex={4}>
         <Image
-          source={{uri: route.params.ImageSource}}
+          source={{uri: route.params.imageSource}}
           alt="dd"
           w="100%"
           h="100%"

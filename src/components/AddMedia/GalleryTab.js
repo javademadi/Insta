@@ -10,7 +10,7 @@ import {VStack, HStack, Icon, Text, Stack, ScrollView} from 'native-base';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Foundation from 'react-native-vector-icons/Foundation';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import * as ImagePicker from 'react-native-image-picker';
+import {launchImageLibrary} from 'react-native-image-picker';
 const {width} = Dimensions.get('window');
 export default function GalleryTab({navigation}) {
   const [source, setSource] = useState(null);
@@ -18,23 +18,34 @@ export default function GalleryTab({navigation}) {
   const [showBox, setShowBox] = useState(false);
 
   useEffect(() => {
-    const handle_ImagePicker = () => {
-      ImagePicker.launchImageLibrary(
-        {
-          mediaType: 'mixed',
-          quality: 1,
-          selectionLimit: 5,
-          maxHeight: 800,
-          maxWidth: 600,
-        },
-        Response => {
-          setPhotos(Response?.assets);
-        },
-      );
-    };
-    handle_ImagePicker();
+    launchImageLibrary(
+      {
+        mediaType: 'mixed',
+        quality: 1,
+        selectionLimit: 0,
+        maxHeight: 800,
+        maxWidth: 600,
+      },
+      Response => {
+        setPhotos(Response?.assets);
+      },
+    );
   }, []);
-
+  const handleClick = () => {
+    setShowBox(false);
+    launchImageLibrary(
+      {
+        mediaType: 'mixed',
+        quality: 1,
+        selectionLimit: 0,
+        maxHeight: 800,
+        maxWidth: 600,
+      },
+      Response => {
+        setPhotos(Response?.assets);
+      },
+    );
+  };
   const renderSectionOne = () => {
     return photos.map((image, index) => {
       return (
@@ -72,7 +83,9 @@ export default function GalleryTab({navigation}) {
               borderBottomWidth: 1,
               borderColor: '#ccc',
             }}>
-            <Text mx={3}>Gallery</Text>
+            <Text mx={3} onPress={handleClick}>
+              Gallery
+            </Text>
           </HStack>
           <HStack
             w="140px"
