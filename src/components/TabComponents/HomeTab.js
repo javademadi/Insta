@@ -1,12 +1,23 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View, FlatList, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  ScrollView,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import {VStack, Icon, Avatar} from 'native-base';
 import CardComponent from '../CardComponent';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
+import Story from '../Home/Story';
+
 const HomeTab = ({navigation}) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [name, setName] = useState(null);
+  const [storyVisible, setStoryVisible] = useState(false);
+  const [storyImage, setStoryImage] = useState(false);
   const [cardItems, setCarditems] = useState([
     {
       id: 0,
@@ -59,6 +70,16 @@ const HomeTab = ({navigation}) => {
       likePost: false,
     },
   ]);
+
+  const handleStoryClick = avatar => {
+    setStoryVisible(true);
+    setStoryImage(avatar);
+
+    setTimeout(() => {
+      setStoryVisible(false);
+    }, 10000);
+  };
+
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -74,9 +95,22 @@ const HomeTab = ({navigation}) => {
       avatar: item.avatar,
     });
   };
+  const avatarSource = [
+    require('../../assets/Thumbnail-3.jpg'),
+    require('../../assets/Thumbnail-5.jpg'),
+    require('../../assets/Thumbnail-1.jpg'),
+    require('../../assets/Thumbnail-2.jpg'),
+    require('../../assets/Thumbnail-4.jpg'),
+    require('../../assets/Thumbnail-1.jpg'),
+    require('../../assets/Thumbnail-2.jpg'),
+    require('../../assets/Thumbnail-3.jpg'),
+    require('../../assets/Thumbnail-4.jpg'),
+    require('../../assets/Thumbnail-5.jpg'),
+  ];
+
   return (
     <VStack style={styles.mainContainer}>
-      <View style={{height: 100}}>
+      <View style={{height: 110}}>
         <View
           style={{
             flex: 1,
@@ -84,6 +118,7 @@ const HomeTab = ({navigation}) => {
             justifyContent: 'space-between',
             alignItems: 'center',
             paddingHorizontal: 12,
+            paddingVertical: 5,
           }}>
           <Text style={{color: '#000', fontWeight: 'bold'}}>Stories</Text>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -91,7 +126,7 @@ const HomeTab = ({navigation}) => {
             <Text style={{color: '#000', fontWeight: 'bold'}}> Watch All</Text>
           </View>
         </View>
-        <View style={{flex: 3, paddingHorizontal: 12}}>
+        <View style={{flex: 3, paddingHorizontal: 8}}>
           <ScrollView
             contentContainerStyle={{
               paddingStart: 5,
@@ -100,58 +135,23 @@ const HomeTab = ({navigation}) => {
             }}
             horizontal={true}
             showsHorizontalScrollIndicator={false}>
-            <Avatar
-              style={{
-                borderColor: 'red',
-                borderWidth: 2,
-                paddingEnd: 30,
-              }}
-              source={require('../../assets/Thumbnail-1.jpg')}
-              marginX={1}
-              size="lg"
-            />
-            <Avatar
-              style={{borderColor: 'red', borderWidth: 2}}
-              source={require('../../assets/Thumbnail-2.jpg')}
-              marginX={1}
-              size="lg"
-            />
-            <Avatar
-              style={{borderColor: 'red', borderWidth: 2}}
-              source={require('../../assets/Thumbnail-3.jpg')}
-              mx={1}
-              size="lg"
-            />
-            <Avatar
-              style={{borderColor: 'red', borderWidth: 2}}
-              source={require('../../assets/Thumbnail-4.jpg')}
-              mx={1}
-              size="lg"
-            />
-            <Avatar
-              style={{borderColor: 'red', borderWidth: 2}}
-              source={require('../../assets/Thumbnail-5.jpg')}
-              mx={1}
-              size="lg"
-            />
-            <Avatar
-              style={{borderColor: 'red', borderWidth: 2}}
-              source={require('../../assets/Thumbnail-1.jpg')}
-              mx={1}
-              size="lg"
-            />
-            <Avatar
-              style={{borderColor: 'red', borderWidth: 2}}
-              source={require('../../assets/Thumbnail-2.jpg')}
-              mx={1}
-              size="lg"
-            />
-            <Avatar
-              style={{borderColor: 'red', borderWidth: 2}}
-              source={require('../../assets/Thumbnail-3.jpg')}
-              mx={1}
-              size="lg"
-            />
+            {avatarSource.map((avatar, index) => {
+              return (
+                <TouchableWithoutFeedback
+                  key={index}
+                  onPress={() => handleStoryClick(avatar)}>
+                  <Avatar
+                    style={{
+                      borderColor: 'red',
+                      borderWidth: 2,
+                    }}
+                    source={avatar}
+                    marginX={1}
+                    size="lg"
+                  />
+                </TouchableWithoutFeedback>
+              );
+            })}
           </ScrollView>
         </View>
       </View>
@@ -172,6 +172,11 @@ const HomeTab = ({navigation}) => {
             showComments={() => showComments(item)}
           />
         )}
+      />
+      <Story
+        isOpen={storyVisible}
+        storyImage={storyImage}
+        onClose={() => setStoryVisible(false)}
       />
       <Modal
         isVisible={isModalVisible}

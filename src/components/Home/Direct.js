@@ -1,6 +1,15 @@
 import React, {useState} from 'react';
 import {StyleSheet, FlatList} from 'react-native';
-import {VStack, HStack, Icon, Text, Stack, Input, List} from 'native-base';
+import {
+  VStack,
+  HStack,
+  Icon,
+  Text,
+  Stack,
+  Input,
+  List,
+  Avatar,
+} from 'native-base';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export default function Direct({navigation}) {
