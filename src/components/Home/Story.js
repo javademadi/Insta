@@ -31,15 +31,7 @@ export default function Story({isOpen, onClose, storyImage}) {
           height: '93%',
           width: '100%',
         }}>
-        <Progress
-          bg="#ccc"
-          size="xs"
-          value={seconds}
-          min={0}
-          max={10}
-          m={3}
-          colorScheme="light"
-        />
+        <Progress bg="#ccc" size="xs" value={seconds} min={0} max={10} m={3} />
 
         <HStack
           p={3}
