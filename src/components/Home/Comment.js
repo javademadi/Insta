@@ -49,14 +49,12 @@ export default function commentComponent({navigation, route}) {
         <Icon name="ios-send-outline" as={Ionicons} size={6} />
       </HStack>
 
-      <HStack>
+      <HStack p={2} alignItems="center" space={1}>
         <Avatar source={route.params.avatar} />
-        <Text>
-          <Text style={{fontWeight: 'bold', fontSize: 16}}>
-            {route.params.username}
-          </Text>
-          {route.params.caption}
+        <Text style={{fontWeight: 'bold', fontSize: 16}}>
+          {route.params.username}
         </Text>
+        <Text>{route.params.caption}</Text>
       </HStack>
       {array.map((val, key) => {
         return (

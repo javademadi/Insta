@@ -9,7 +9,7 @@ export default function Story({isOpen, onClose, storyImage}) {
     if (isOpen && seconds < 11) {
       tm = setTimeout(() => {
         setSeconds(seconds + 1);
-      }, 400);
+      }, 800);
     } else {
       setSeconds(0);
       clearTimeout(tm);
