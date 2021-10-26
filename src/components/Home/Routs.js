@@ -14,11 +14,7 @@ export default function HomeNavigator({navigation, route}) {
   const Stack = createStackNavigator();
 
   return (
-    <Stack.Navigator
-      screenOptions={{
-        tabBarStyle: {display: 'none', opacity: 0},
-        tabBarStyle: {display: 'none'},
-      }}>
+    <Stack.Navigator>
       <Stack.Screen
         name="HomeTab"
         component={HomeTab}
@@ -41,10 +37,14 @@ export default function HomeNavigator({navigation, route}) {
             />
           ),
           headerStyle: {
-            height: 40,
+            height: 42,
           },
           headerTitleAlign: 'center',
           title: 'Instagram',
+          headerTitleStyle: {
+            fontFamily: 'cassa',
+            fontSize: 18,
+          },
         }}
       />
       <Stack.Screen

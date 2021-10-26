@@ -31,7 +31,7 @@ const CardComponent = ({
   let lastTap = null;
   const handleDoubleTap = () => {
     const now = Date.now();
-    const DOUBLE_PRESS_DELAY = 400;
+    const DOUBLE_PRESS_DELAY = 300;
     if (lastTap && now - lastTap < DOUBLE_PRESS_DELAY) {
       addLike();
     } else {
