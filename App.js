@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {View, NativeBaseProvider, Text} from 'native-base';
+import {NativeBaseProvider} from 'native-base';
 import NetInfo from '@react-native-community/netinfo';
 import MainScreen from './src/components/MainScreen';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import SavedPost from './src/components/Profile/savedPost';
 import CreateCollection from './src/components/Profile/CreateCollection';
 import Suggest from './src/components/Profile/Suggest';
@@ -18,8 +17,6 @@ const App = () => {
 
   useEffect(() => {
     NetInfo.fetch().then(state => {
-      console.log('Connection type', state.type);
-      console.log('Is connected?', state.isConnected);
       setConnected(state.isConnected);
     });
   }, []);
