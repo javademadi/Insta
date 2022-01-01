@@ -86,6 +86,7 @@ export default function LikesTab({navigation}) {
 
           return (
             <Box
+              key={i}
               borderBottomWidth="3"
               borderColor={borderColor}
               flex={1}
